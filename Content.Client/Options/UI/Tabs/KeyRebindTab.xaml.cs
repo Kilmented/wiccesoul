@@ -160,6 +160,11 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-general");
             AddCheckBox("ui-options-hotkey-keymap", _cfg.GetCVar(CVars.DisplayUSQWERTYHotkeys), HandleToggleUSQWERTYCheckbox);
 
+            // ES START
+            AddHeader("ui-options-header-es");
+            AddButton(ContentKeyFunctions.ESHoldToFace);
+            // ES END
+
             AddHeader("ui-options-header-movement");
             AddButton(EngineKeyFunctions.MoveUp);
             AddButton(EngineKeyFunctions.MoveLeft);
@@ -170,10 +175,6 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.ToggleStanding);
             AddCheckBox("ui-options-function-auto-get-up", _cfg.GetCVar(CCVars.AutoGetUp), HandleToggleAutoGetUp); // WD EDIT
             InitToggleWalk();
-            AddButton(ContentKeyFunctions.ToggleKnockdown);
-            // ES START
-            AddButton(ContentKeyFunctions.ESHoldToFace);
-            // ES END
 
             AddHeader("ui-options-header-camera");
             AddButton(EngineKeyFunctions.CameraRotateLeft);

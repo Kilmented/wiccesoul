@@ -49,12 +49,6 @@ binds:
 - function: Walk
   type: State
   key: Shift
-- function: ToggleStanding
-  type: State
-  key: R
-- function: ToggleFocus
-  type: State
-  key: Space
 # Shuttle
 - function: ShuttleStrafeUp
   type: State
