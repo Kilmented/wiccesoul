@@ -303,7 +303,7 @@ public abstract partial class SharedMoverController : VirtualController
             {
                 var backwardsAngle = moveSpeedComponent?.BackwardsAngle ??
                                      MovementSpeedModifierComponent.ESDefaultBackwardsAngle;
-                var rotNorm = worldRot.ToWorldVec().Normalized();
+                var rotNorm = xform.WorldRotation.ToWorldVec().Normalized();
                 var velNorm = velocity.Normalized();
                 var cosAngle = Vector2.Dot(velNorm, rotNorm);
                 var threshold = new Angle(MathF.PI) - (backwardsAngle / 2);

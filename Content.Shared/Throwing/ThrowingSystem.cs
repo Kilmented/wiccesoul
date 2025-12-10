@@ -8,6 +8,7 @@ using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
+using Content.Shared.Interaction;
 using Content.Shared.Projectiles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -46,6 +47,9 @@ public sealed partial class ThrowingSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
     [Dependency] private AnchorableSystem _anchorable = default!;
+    // ES START
+    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    // ES END
 
     private EntityQuery<AnchorableComponent> _anchorableQuery;
 
@@ -247,6 +251,11 @@ public sealed partial class ThrowingSystem : EntitySystem
             var msg = new ThrowPushbackAttemptEvent();
             RaiseLocalEvent(uid, msg);
             const float massLimit = 5f;
+
+            // ES START
+            // rotate them in the direction of the thrown thing
+            _rotate.TryFaceAngle(user.Value, direction.ToWorldAngle());
+            // ES END
 
             if (!msg.Cancelled)
 
