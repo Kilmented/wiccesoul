@@ -188,6 +188,7 @@
   - type: ShipRepairable
     repairTime: 6
     repairCost: 6
+  - type: ESEmergencyAccessDoor # ES
   placement:
     mode: SnapgridCenter
 
