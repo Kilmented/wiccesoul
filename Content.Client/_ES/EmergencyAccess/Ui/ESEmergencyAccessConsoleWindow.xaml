@@ -12,7 +12,7 @@
             <Button Name="SearchButton" Text="{Loc 'es-emergency-access-ui-search-button'}" HorizontalAlignment="Right"/>
         </BoxContainer>
         <Control MinHeight="10"/>
-        <FillPanel StyleClasses="PanelDark">
+        <PanelContainer StyleClasses="PanelDark" VerticalExpand="True">
             <RichTextLabel Name="NotFoundLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Visible="False"/>
             <BoxContainer Name="InfoBox" Orientation="Vertical" Margin="20 0 20 20">
                 <Control VerticalExpand="True"/>
@@ -38,6 +38,6 @@
                 <Control VerticalExpand="True"/>
                 <Button Name="ToggleButton" Text="{Loc 'es-emergency-access-ui-toggle-button'}" MinHeight="50" HorizontalExpand="True"/>
             </BoxContainer>
-        </FillPanel>
+        </PanelContainer>
     </BoxContainer>
 </controls:ESEmergencyAccessConsoleWindow>

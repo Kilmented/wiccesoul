@@ -11,14 +11,13 @@
     sprite: Structures/Machines/computers.rsi
     noRot: true
     layers:
-    - map: ["computerLayerBody"]
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: terminal
-    - map: ["computerLayerKeyboard"]
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
       state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: generic
-    - map: ["computerLayerKeys"]
+    - map: [ "computerLayerScreen" ]
+      state: aiupload
+    - map: [ "computerLayerKeys" ]
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
@@ -101,24 +100,19 @@
   components:
   - type: Sprite
     layers:
-    - map: ["computerLayerBody"]
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: terminal
-    - map: ["computerLayerKeyboard"]
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: emerg_key_off
-    - map: ["computerLayerScreen"]
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: emerg
-    - map: ["computerLayerKeys"]
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: emerg_key
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: aiupload
+    - map: [ "computerLayerKeys" ]
+      state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
     color: "#ffff55"
   - type: ESEmergencyAccessConsole
-  - type: ESSabotageTarget
   - type: UseDelay
     delay: 0.5
   - type: ActivatableUI
