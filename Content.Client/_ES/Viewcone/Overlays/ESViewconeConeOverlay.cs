@@ -77,6 +77,7 @@ public sealed class ESViewconeConeOverlay : Overlay
         _viewconeShader.SetParameter("ConeFeather", _coneFeather);
         _viewconeShader.SetParameter("ConeIgnoreRadius", _coneIgnoreRadius);
         _viewconeShader.SetParameter("ConeIgnoreFeather", _coneIgnoreFeather);
+        _viewconeShader.SetParameter("Offset", _eyeEntity.Value.Comp1.Offset * 64f); // 32 x 32 is the size of a tile, times 2 to keep itg g
 
         worldHandle.UseShader(_viewconeShader);
         worldHandle.DrawRect(viewport, Color.White);
