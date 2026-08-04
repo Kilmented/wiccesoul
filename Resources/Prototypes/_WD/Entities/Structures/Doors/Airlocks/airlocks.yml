@@ -1,0 +1,5 @@
+﻿- type: entity
+  parent: [ AirlockCargo , WicceAirlockOverrideable]
+  abstract: false
+  id: AirlockCargoHackable
+  suffix: Cargo, Hackable
