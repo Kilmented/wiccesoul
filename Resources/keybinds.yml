@@ -1,5 +1,10 @@
 version: 1 # Not used right now, whatever.
 binds:
+# ES START
+- function: ESHoldToFace
+  type: State
+  key: Shift
+# ES END
 - function: UIClick
   type: State
   key: MouseLeft
@@ -44,12 +49,6 @@ binds:
 - function: Walk
   type: State
   key: Shift
-- function: ToggleStanding
-  type: State
-  key: R
-- function: ToggleFocus
-  type: State
-  key: Space
 # Shuttle
 - function: ShuttleStrafeUp
   type: State

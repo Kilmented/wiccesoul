@@ -233,6 +233,8 @@
   # Mono
   - type: ShipNpcTarget
     needGrid: NoGrid
+  - type: ESViewcone
+  - type: ESHoldToFace
 
 - type: entity
   save: false

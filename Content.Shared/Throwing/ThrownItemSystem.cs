@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._CE.ZLevels.Core.EntitySystems; // CrystallEdge
+using Content.Shared._ES.Viewcone;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Gravity;
@@ -9,6 +10,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Throwing
@@ -25,6 +27,12 @@ namespace Content.Shared.Throwing
         [Dependency] private SharedPhysicsSystem _physics = default!;
         [Dependency] private SharedGravitySystem _gravity = default!;
         [Dependency] private CESharedZLevelsSystem _zLevels = default!; // CrystallEdge
+        // ES START
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly ESViewconeEffectSystem _effect = default!;
+
+        public static EntProtoId LandViewconeEffect = "ESViewconeEffectAttack";
+        // ES END
 
         private const string ThrowingFixture = "throw-fixture";
 
@@ -125,6 +133,15 @@ namespace Content.Shared.Throwing
             if (thrownItem.Thrower is not null)
                 _adminLogger.Add(LogType.Landed, LogImpact.Low, $"{ToPrettyString(uid):entity} thrown by {ToPrettyString(thrownItem.Thrower.Value):thrower} landed.");
 
+            // ES START
+            _transform.SetLocalRotation(uid, Angle.Zero);
+            _physics.SetAngularVelocity(uid, 0f, body: physics);
+
+            // play effect if there was a thrower
+            if (thrownItem.Thrower != null)
+                _effect.SpawnEffect(uid, LandViewconeEffect);
+            // ES END
+
             _broadphase.RegenerateContacts((uid, physics));
             //CrystallEdge dont call LandEvent if we dont have ground
             if (_zLevels.DistanceToGround(uid) > 0.5f)
@@ -143,10 +160,10 @@ namespace Content.Shared.Throwing
                 _adminLogger.Add(LogType.ThrowHit, LogImpact.Low,
                     $"{ToPrettyString(thrown):thrown} thrown by {ToPrettyString(component.Thrower.Value):thrower} hit {ToPrettyString(target):target}.");
 
-            if (component.Thrower is not null)// Nyano - Summary: Gotta check if there was a thrower. 
+            if (component.Thrower is not null)// Nyano - Summary: Gotta check if there was a thrower.
                 RaiseLocalEvent(target, new ThrowHitByEvent(component.Thrower.Value, thrown, target, component), true); // Nyano - Summary: Gotta update for who threw it.
             else
-                RaiseLocalEvent(target, new ThrowHitByEvent(null, thrown, target, component), true); // Nyano - Summary: No thrower. 
+                RaiseLocalEvent(target, new ThrowHitByEvent(null, thrown, target, component), true); // Nyano - Summary: No thrower.
             RaiseLocalEvent(thrown, new ThrowDoHitEvent(thrown, target, component), true);
         }
 
