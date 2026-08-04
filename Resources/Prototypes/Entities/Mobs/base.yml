@@ -61,9 +61,7 @@
     - description: Firing a weapon within half a tile will fire over their shoulder.
       color: "#4f94ad"
       requireDetailRange: true
-  - type: ESViewcone
   - type: ESViewconeOccludable
-  - type: ESHoldToFace
 
 - type: entity
   save: false
